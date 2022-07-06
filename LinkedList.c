@@ -7,12 +7,19 @@ struct node
 };
 void display(struct node *p)
 {
-    while (p != NULL)
+    if (p == NULL)
     {
-        printf(" %d ", p->item);
-        p = p->next;
+        printf("List is empty\n");
     }
-    printf("\n");
+    else
+    {
+        while (p != NULL)
+        {
+            printf(" %d ", p->item);
+            p = p->next;
+        }
+        printf("\n");
+    }
 }
 // this function will also handle automatically insertion at begining of the list when the list is empty
 void insertAtStart(struct node **s, int data)
@@ -33,7 +40,7 @@ void insertAtLast(struct node **s, int data)
     // prepare the newly created node with appropriate values
     n->item = data;
     n->next = NULL;
-    // adding this new node the linked list :2 cases
+    // adding this new node to the linked list :2 cases
     // 1. if the list is empty
     if (*s == NULL)
     {
@@ -194,13 +201,13 @@ int main()
             break;
 
         case 5:
-            deleteLastNode(start);
+            deleteLastNode(&start);
             break;
 
         case 6:
             printf("Enter the key: ");
             scanf("%d", &key);
-            deleteANode(start, key);
+            deleteANode(&start, key);
             break;
 
         case 7:
